@@ -1,0 +1,58 @@
+package Stack;
+import java.util.*;
+
+public class evalPostfix {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		
+		String postfix = "4352*-+";
+		
+		char[] arr = postfix.toCharArray();
+		Stack<Integer> stack = new Stack<>();
+		
+		for(char ch : arr) {
+			if(Character.isDigit(ch)) {
+				stack.push(ch - '0');
+				
+				
+			}
+			else {
+				if(ch == '+') {
+					int secArg = stack.pop();
+					int firstArg = stack.pop();
+					
+					int fin = firstArg + secArg;
+					stack.push(fin);
+					
+					
+				}
+				else if(ch == '-') {
+					int secArg = stack.pop();
+					int firstArg = stack.pop();
+					
+					int fin = firstArg - secArg;
+					stack.push(fin);
+					
+				}
+				else if(ch == '*') {
+					int secArg = stack.pop();
+					int firstArg = stack.pop();
+					
+					int fin = firstArg * secArg;
+					stack.push(fin);
+					
+				}
+				else if(ch == '/') {
+					int secArg = stack.pop();
+					int firstArg = stack.pop();
+					
+					int fin = firstArg / secArg;
+					stack.push(fin);
+					
+				}
+			}
+		}
+		System.out.println("The answer is = "+stack.peek());
+		
+	}
+}
